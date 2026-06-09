@@ -3,29 +3,28 @@ const fs = require("fs");
 
 const makeDailyCommit = () => {
   try {
-    // Change directory to the Git repository
-    const repoPath = "/volume3/homes/Kanemiller/daily-commits-home";
+    const repoPath = "C:\\Users\\Helena\\daily-commits";
     process.chdir(repoPath);
 
-    // Ensure we're on the main branch and reset any changes
     execSync("git checkout main");
     execSync("git fetch origin main");
-    execSync("git reset --hard origin/main");  // Overwrites local changes with the remote
+    execSync("git reset --hard origin/main");
 
-    // Create a unique message with today's date and time
-    const date = new Date().toISOString();
-    const message = `Daily commit for ${date}`;
+    // Random number of commits: 1–9 (gives all shades of green)
+    const count = Math.floor(Math.random() * 9) + 1;
 
-    // Write a new file with the updated content
-    fs.writeFileSync("temp.txt", message);
+    for (let i = 0; i < count; i++) {
+      const date = new Date().toISOString();
+      const message = `Daily commit ${i + 1}/${count} for ${date}`;
+      fs.writeFileSync("temp.txt", message);
+      execSync("git add temp.txt");
+      execSync(`git commit -m "${message}"`);
+    }
 
-    // Stage, commit, and push the changes
-    execSync("git add temp.txt");
-    execSync(`git commit -m "${message}"`);
     execSync("git push origin main");
-
-    // Clean up the temporary file after a successful push
     fs.unlinkSync("temp.txt");
+
+    console.log(`Pushed ${count} commit(s) for today.`);
   } catch (error) {
     console.error("Error during daily commit:", error);
   }
