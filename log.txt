@@ -1,1 +1,1 @@
-polish — 2026-10-22T13:00:04.507Z
+refactor: small improvements — 2026-10-23T13:00:04.229Z
