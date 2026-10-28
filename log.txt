@@ -1,1 +1,1 @@
-dev log update — 2026-10-28T13:00:06.527Z
+refactor: small improvements — 2026-10-28T13:00:06.751Z
