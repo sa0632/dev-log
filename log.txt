@@ -1,1 +1,1 @@
-update notes — 2026-11-08T13:08:23.606Z
+refactor: small improvements — 2026-11-08T13:08:23.852Z
